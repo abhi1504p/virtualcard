@@ -109,7 +109,7 @@ class _ScanPageState extends State<ScanPage> {
           if (isScanOver)
             const Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Text("not scand"),
+              child: Text("The card is scand and details are listed below "),
             ),
           Wrap(
             children: lines.map((line) => LineItem(line: line)).toList(),
