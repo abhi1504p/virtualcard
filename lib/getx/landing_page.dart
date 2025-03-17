@@ -10,18 +10,15 @@ class LandingPageController extends GetxController {
   void addelement(List<String> newLines) {
     lines.value = newLines;
     isSelected.value = true;
-
   }
 
   void changeTabIndex(int index) {
     tabIndex.value = index;
-
   }
 
   @override
   void onInit() {
     super.onInit();
-
   }
 
   @override

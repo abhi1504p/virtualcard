@@ -14,7 +14,26 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Virtual Card')),
+      backgroundColor: Colors.blueAccent.shade100,
+      appBar: AppBar(
+        title: Text(
+          'Virtual Card',
+          style: TextStyle(
+              color: Color(0xFF0066b2), fontSize: 25, fontWeight: FontWeight.bold),
+        ),
+        backgroundColor: Colors.black,
+      ),
+      body: Container(
+        height: Get.height * .81,
+        width: Get.width * 1,
+        decoration: BoxDecoration(
+
+          shape: BoxShape.circle,
+            image: DecorationImage(
+
+                image: AssetImage("assets/image/virtual_image.jpg"),
+                fit: BoxFit.fitWidth)),
+      ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton(
           shape: CircleBorder(),
