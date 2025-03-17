@@ -2,11 +2,13 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
-import 'package:go_router/go_router.dart';
+import 'package:get/get.dart';
 import 'package:google_mlkit_text_recognition/google_mlkit_text_recognition.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:virtualcard/models/contact_model.dart';
 
 import '../utils/constant.dart';
+import 'form_page.dart';
 
 class ScanPage extends StatefulWidget {
   static const String routeName = 'scan';
@@ -30,7 +32,7 @@ class _ScanPageState extends State<ScanPage> {
       image = '';
 
   void createContact() {
-    (
+    final contact = ContactModel(
       name: name,
       mobile: mobile,
       email: email,
@@ -40,6 +42,7 @@ class _ScanPageState extends State<ScanPage> {
       website: website,
       image: image,
     );
+    Get.to(FormPage(contactModel: contact,));
   }
 
   @override
@@ -108,8 +111,8 @@ class _ScanPageState extends State<ScanPage> {
             ),
           if (isScanOver)
             const Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text("The card is scand and details are listed below "),
+              padding: EdgeInsets.all(8.0),
+              child: Text("The card is scaned sand details are listed below "),
             ),
           Wrap(
             children: lines.map((line) => LineItem(line: line)).toList(),
@@ -262,10 +265,10 @@ class _DragTargetItemState extends State<DragTargetItem> {
                 ],
               ),
             ),
-            onAccept: (value) {
+            onAcceptWithDetails: (value) {
               setState(() {
                 if (dragItem.isEmpty) {
-                  dragItem = value;
+                  dragItem = value.data;
                 } else {
                   dragItem += ' $value';
                 }
