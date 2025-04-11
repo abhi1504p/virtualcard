@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:go_router/go_router.dart';
 
 import '../models/contact_model.dart';
 
@@ -145,7 +142,6 @@ class _FormPageState extends State<FormPage> {
       //print(widget.contactModel);
 
       // Access the ContactController using Get.find
-
     }
   }
 }
