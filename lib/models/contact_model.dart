@@ -1,4 +1,5 @@
 const String tableContact = "tbl_contact";
+
 const String tableContactColId = "id";
 const String tableContactColName = "name";
 const String tableContactColMobile = "mobile";
@@ -12,6 +13,7 @@ const String tableContactColWebsite = "website";
 
 class ContactModel {
   int id;
+
 
   ContactModel({
     this.id = -1,
@@ -40,6 +42,7 @@ class ContactModel {
 
   Map<String, dynamic> toMap() {
     final map = <String, dynamic>{
+
       tableContactColName: name,
       tableContactColAddress: address,
       tableContactColCompany: company,
@@ -57,6 +60,7 @@ class ContactModel {
   }
 
   factory ContactModel.fromMap(Map<String, dynamic> map) => ContactModel(
+    id: map[tableContactColId],
       name: map[tableContactColName],
       mobile: map[tableContactColMobile],
       website: map[tableContactColWebsite],

@@ -6,11 +6,14 @@ class LandingPageController extends GetxController {
   RxBool isSelected = false.obs;
   RxList lines = <String>[].obs;
   RxList templist = <String>[].obs;
+  RxBool iconsSelected=false.obs;
+
 
   void addelement(List<String> newLines) {
     lines.value = newLines;
     isSelected.value = true;
   }
+
 
   void changeTabIndex(int index) {
     tabIndex.value = index;
