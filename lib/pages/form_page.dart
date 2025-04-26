@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:go_router/go_router.dart';
+import 'package:virtualcard/getx/contact_getx.dart';
 
 import '../models/contact_model.dart';
+import '../utils/helper_functions.dart';
+import 'home_page.dart';
 
 class FormPage extends StatefulWidget {
   static const String routeName = 'form';
@@ -133,19 +134,56 @@ class _FormPageState extends State<FormPage> {
     super.dispose();
   }
 
-  void saveContact() async {
+  // void saveContact() async {
+  //   if (_formKey.currentState!.validate()) {
+  //     widget.contactModel.name = nameController.text;
+  //     widget.contactModel.mobile = mobileController.text;
+  //     widget.contactModel.email = emailController.text;
+  //     widget.contactModel.address = addressController.text;
+  //     widget.contactModel.company = companyController.text;
+  //     widget.contactModel.designation = designationController.text;
+  //     widget.contactModel.website = webController.text;
+  //     //print(widget.contactModel);
+  //
+  //     // Access the ContactController using Get.find
+  //   }
+  //   Get.find<ContactGetx>()
+  //       .insertContact(widget.contactModel)
+  //       .then((value) {
+  //         print(value);
+  //     if (value > 0) {
+  //       showMsg(context, 'Saved');
+  //       Get.offNamed(HomePage.routeName);
+  //     }
+  //   }).catchError((error) {
+  //     showMsg(context, 'Failed to save');
+  //   });
+  // }
+  void saveContact() {
     if (_formKey.currentState!.validate()) {
-      widget.contactModel.name = nameController.text;
-      widget.contactModel.mobile = mobileController.text;
-      widget.contactModel.email = emailController.text;
-      widget.contactModel.address = addressController.text;
-      widget.contactModel.company = companyController.text;
-      widget.contactModel.designation = designationController.text;
-      widget.contactModel.website = webController.text;
-      //print(widget.contactModel);
+      final ContactModel updatedContact = ContactModel(
+        name: nameController.text,
+        mobile: mobileController.text,
+        email: emailController.text,
+        address: addressController.text,
+        company: companyController.text,
+        designition: designationController.text,
+        website: webController.text,
+      );
 
-      // Access the ContactController using Get.find
-
+      Get.find<ContactGetx>()
+          .insertContact(updatedContact)
+          .then((value) {
+        if (value > 0) {
+          showMsg(context, 'Contact saved successfully');
+          Get.offNamedUntil('/', (route) => false);
+        } else {
+          showMsg(context, 'Failed to save contact');
+        }
+      }).catchError((error) {
+        showMsg(context, 'Error: ${error.toString()}');
+        print('Error: ${error.toString()}');
+      });
     }
   }
 }
